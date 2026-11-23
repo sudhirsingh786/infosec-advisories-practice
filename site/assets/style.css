@@ -1,0 +1,32 @@
+:root { --navy:#145374; --ink:#1f2933; --muted:#5b6770; --line:#d9e2ec; --bg:#ffffff; --soft:#eef7fb; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: "Segoe UI", Roboto, Arial, sans-serif; color:var(--ink); background:var(--bg); line-height:1.55; }
+header { background:var(--navy); color:#fff; padding:12px 24px; display:flex; align-items:center; gap:12px; }
+header .brand { color:#fff; text-decoration:none; font-weight:600; }
+header .tag { font-size:12px; border:1px solid #fff; border-radius:10px; padding:1px 8px; }
+main { max-width:1100px; margin:0 auto; padding:24px 16px 48px; }
+h1 { color:#0f3d5c; font-size:26px; margin:8px 0 12px; }
+h2 { color:#0f3d5c; font-size:20px; margin-top:28px; border-bottom:1px solid var(--line); padding-bottom:4px; }
+h3 { color:var(--navy); font-size:16px; margin-top:20px; }
+a { color:var(--navy); }
+.back { margin:0; font-size:14px; }
+.summary { font-size:16px; background:var(--soft); border-left:4px solid var(--navy); padding:10px 14px; }
+dl.meta { display:flex; flex-wrap:wrap; gap:8px 28px; margin:0 0 12px; }
+dl.meta div { display:flex; gap:6px; align-items:center; }
+dl.meta dt { color:var(--muted); font-size:13px; }
+dl.meta dd { margin:0; }
+.table { width:100%; overflow-x:auto; }
+table { border-collapse:collapse; width:100%; font-size:14px; }
+th, td { border:1px solid var(--line); padding:6px 10px; text-align:left; vertical-align:top; }
+th { background:var(--soft); }
+code { background:#f3f4f6; padding:1px 4px; border-radius:3px; font-size:13px; }
+pre { background:#0f1b24; color:#e6edf3; padding:12px; border-radius:6px; overflow-x:auto; }
+pre code { background:none; color:inherit; padding:0; }
+.badge { display:inline-block; font-size:12px; font-weight:600; border-radius:10px; padding:1px 9px; white-space:nowrap; }
+.sev-critical { background:#fde2e1; color:#9b1c1c; }
+.sev-high { background:#feecdc; color:#8a3c00; }
+.sev-medium { background:#fff6d6; color:#7a5a00; }
+.sev-low { background:#e3f9e5; color:#1e6b2e; }
+.badge[class*="st-"] { background:#e8eef4; color:#24394d; }
+footer { border-top:1px solid var(--line); color:var(--muted); font-size:12px; padding:14px 16px; text-align:center; }
+table.index td:nth-child(1), table.index td:nth-child(5), table.index td:nth-child(6) { white-space:nowrap; }

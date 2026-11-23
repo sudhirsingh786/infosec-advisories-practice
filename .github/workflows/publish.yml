@@ -1,0 +1,51 @@
+# Publishes the advisory site to GitHub Pages when main changes.
+# Nothing is downloaded during the build: tools/build.py uses only the Python
+# standard library that ships with the runner image.
+# Security: every action is pinned to a full commit SHA (release tag in the comment).
+# To upgrade: git ls-remote --tags https://github.com/actions/<name> and copy the new SHA.
+# Enable private publishing in Settings > Pages so only people with read access to
+# this repo can open the site (needs GitHub Enterprise Cloud).
+name: Publish advisories
+
+on:
+  push:
+    branches: [main]
+    paths: ["advisories/**", "site/**", "tools/**", ".github/workflows/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build site (standard library only)
+        run: python3 tools/build.py advisories _site
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9  # v5.0.0
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346  # v5.0.1
